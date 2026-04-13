@@ -1,8 +1,6 @@
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
-using CKAN.Extensions;
 using CKAN.Versioning;
 
 namespace CKAN
@@ -21,14 +19,15 @@ namespace CKAN
 
         public static readonly ModuleVersion ReleaseVersion = new ModuleVersion(GetVersion());
 
+        /// <summary>
+        /// The highest CKAN metadata spec version this client can parse.
+        /// This is decoupled from the fork's own release version (which starts
+        /// at 1.0.0) because `spec_version` in module metadata tracks upstream
+        /// CKAN's client version, not ours. Bump this when picking up code
+        /// changes from upstream that add support for a newer spec.
+        /// </summary>
         public static readonly ModuleVersion SpecVersion =
-            // A dev build always has an odd patch version, and
-            // an odd number always ends with an odd digit in base 10
-            new Regex(@"^(?<prefix>v\d+\.)(?<minor>\d+)\.\d*[13579]\.")
-                .TryMatch(ReleaseVersion.ToString(), out Match? m)
-                && int.TryParse(m.Groups["minor"].Value, out int minor)
-                ? new ModuleVersion($"{m.Groups["prefix"]}{minor + 1}.999")
-                : ReleaseVersion;
+            new ModuleVersion("v1.36");
 
         public static readonly bool IsNetKAN =
             Assembly.GetExecutingAssembly()

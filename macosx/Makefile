@@ -23,14 +23,18 @@ VERSION:=$(shell egrep '^\s*\#\#\s+v.*$$' $(CHANGELOGSRC) | head -1 | sed -e 's/
 
 $(DMG): app
 	mkdir -p $(OUTDIR)
-	# Use hdiutil (stock on macOS) instead of deprecated genisoimage.
 	rm -f $@
-	hdiutil create -volname $(NAME) -srcfolder $(DMGROOT) \
-	  -ov -format UDZO -fs HFS+ $@
+	@sh ./build-dmg.sh "$(NAME)" "$(DMGROOT)" "$@" "dmg-background.jpg"
 
 app: $(BUILDDIR_x86_64_DEST) $(BUILDDIR_arm64_DEST) $(SCRIPTDEST) $(ICNSDEST) $(PLISTDEST) verify-universal
-	rdfind -minsize 10240 -makeresultsfile false -makesymlinks true $(BUILDDIR_x86_64_DEST) $(BUILDDIR_arm64_DEST)
-	symlinks -rc $(BUILDDIR_arm64_DEST)
+	@# rdfind + symlinks are optional disk-space optimization. Skip if not installed.
+	@if command -v rdfind >/dev/null 2>&1 && command -v symlinks >/dev/null 2>&1; then \
+	  echo "Deduplicating identical files across arch slices..."; \
+	  rdfind -minsize 10240 -makeresultsfile false -makesymlinks true $(BUILDDIR_x86_64_DEST) $(BUILDDIR_arm64_DEST); \
+	  symlinks -rc $(BUILDDIR_arm64_DEST); \
+	else \
+	  echo "Note: install rdfind + symlinks (\`brew install rdfind symlinks\`) to shrink the bundle."; \
+	fi
 
 # Sanity-check that both runtime slices were actually produced with the
 # expected Mach-O architecture. A missing slice = a broken universal build.
@@ -45,11 +49,11 @@ verify-universal: $(BUILDDIR_x86_64_DEST) $(BUILDDIR_arm64_DEST)
 
 $(BUILDDIR_x86_64_DEST): $(BUILDDIR_x86_64_SRC)
 	mkdir -p $(shell dirname $@)
-	cp -rT $< $@
+	ditto $< $@
 
 $(BUILDDIR_arm64_DEST): $(BUILDDIR_arm64_SRC)
 	mkdir -p $(shell dirname $@)
-	cp -rT $< $@
+	ditto $< $@
 
 $(SCRIPTDEST): $(SCRIPTSRC)
 	mkdir -p $(shell dirname $@)

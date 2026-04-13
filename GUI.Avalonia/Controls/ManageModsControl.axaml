@@ -31,38 +31,40 @@
                       IsReadOnly="False"
                       SelectionMode="Single"
                       GridLinesVisibility="Horizontal"
-                      HeadersVisibility="Column">
+                      HeadersVisibility="Column"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Header="Inst."
+                    <DataGridCheckBoxColumn Header="Install"
                                             Binding="{Binding IsInstallChecked}"
-                                            Width="50" />
+                                            Width="70" MinWidth="70" />
                     <DataGridTextColumn Header="Name"
                                         Binding="{Binding Name}"
-                                        Width="200" />
+                                        Width="220" MinWidth="140" />
                     <DataGridTextColumn Header="Author"
                                         Binding="{Binding AuthorsString}"
-                                        Width="120" />
+                                        Width="130" MinWidth="100" />
                     <DataGridTextColumn Header="Installed"
                                         Binding="{Binding InstalledVersion}"
-                                        Width="90" />
+                                        Width="100" MinWidth="100" />
                     <DataGridTextColumn Header="Latest"
                                         Binding="{Binding LatestVersion}"
-                                        Width="90" />
-                    <DataGridTextColumn Header="Compat."
+                                        Width="100" MinWidth="90" />
+                    <DataGridTextColumn Header="Compatibility"
                                         Binding="{Binding GameCompatibility}"
-                                        Width="80" />
+                                        Width="120" MinWidth="120" />
                     <DataGridTextColumn Header="DL Size"
                                         Binding="{Binding DownloadSize}"
-                                        Width="70" />
-                    <DataGridTextColumn Header="Inst. Size"
+                                        Width="90" MinWidth="90" />
+                    <DataGridTextColumn Header="Install Size"
                                         Binding="{Binding InstallSize}"
-                                        Width="70" />
+                                        Width="110" MinWidth="110" />
                     <DataGridTextColumn Header="Downloads"
                                         Binding="{Binding DownloadCount}"
-                                        Width="80" />
+                                        Width="110" MinWidth="110" />
                     <DataGridTextColumn Header="Description"
                                         Binding="{Binding Abstract}"
-                                        Width="*" />
+                                        Width="350" MinWidth="180" />
                 </DataGrid.Columns>
 
                 <DataGrid.ContextMenu>
