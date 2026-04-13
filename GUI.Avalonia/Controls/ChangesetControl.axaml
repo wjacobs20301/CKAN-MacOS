@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CKAN.GUI.Avalonia.ViewModels"
+             x:Class="CKAN.GUI.Avalonia.Controls.ChangesetControl"
+             x:DataType="vm:ChangesetViewModel">
+
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="Review Changes" FontSize="18"
+                   FontWeight="Bold" Margin="8" />
+
+        <TextBlock DockPanel.Dock="Top" Text="{Binding ConflictMessage}"
+                   IsVisible="{Binding HasConflicts}"
+                   Foreground="Red" Margin="8,0,8,8" TextWrapping="Wrap" />
+
+        <!-- Action Buttons -->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Spacing="8" Margin="8">
+            <Button Content="Back" Command="{Binding CancelCommand}" />
+            <Button Content="Confirm Changes" Command="{Binding ConfirmCommand}"
+                    Classes="accent" />
+        </StackPanel>
+
+        <!-- Changes List -->
+        <DataGrid x:CompileBindings="False"
+                  ItemsSource="{Binding Changes}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserSortColumns="True"
+                  HeadersVisibility="Column"
+                  Margin="8">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Action" Binding="{Binding ChangeTypeString}" Width="100" />
+                <DataGridTextColumn Header="Mod" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="Version" Binding="{Binding Version}" Width="120" />
+                <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="200" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

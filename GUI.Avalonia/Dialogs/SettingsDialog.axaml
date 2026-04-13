@@ -1,0 +1,68 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CKAN.GUI.Avalonia.Dialogs.SettingsDialog"
+        Title="CKAN Settings"
+        Width="550" Height="500"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <DockPanel Margin="16">
+        <!-- Buttons -->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+            <Button Content="OK" Width="80" Click="OnOkClick" Classes="accent" />
+            <Button Content="Cancel" Width="80" Click="OnCancelClick" />
+        </StackPanel>
+
+        <ScrollViewer>
+            <StackPanel Spacing="16">
+                <!-- Cache Settings -->
+                <TextBlock Text="Cache Settings" FontSize="16" FontWeight="Bold" />
+                <StackPanel Spacing="4" Margin="16,0,0,0">
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Left" Text="Cache Path: " VerticalAlignment="Center" />
+                        <Button DockPanel.Dock="Right" Content="Browse..." Click="OnBrowseCachePath"
+                                Margin="8,0,0,0" />
+                        <TextBox Name="CachePathText" />
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Left" Text="Cache Size Limit (MB): "
+                                   VerticalAlignment="Center" />
+                        <NumericUpDown Name="CacheSizeLimit" Minimum="0" Maximum="100000"
+                                       Value="0" Width="120" HorizontalAlignment="Left" />
+                    </DockPanel>
+                </StackPanel>
+
+                <!-- Auto-update -->
+                <TextBlock Text="Updates" FontSize="16" FontWeight="Bold" />
+                <StackPanel Spacing="4" Margin="16,0,0,0">
+                    <CheckBox Name="CheckUpdatesOnLaunch" Content="Check for CKAN updates on launch" />
+                    <CheckBox Name="UseDeveloperBuilds" Content="Use development builds" />
+                </StackPanel>
+
+                <!-- Startup -->
+                <TextBlock Text="Startup" FontSize="16" FontWeight="Bold" />
+                <StackPanel Spacing="4" Margin="16,0,0,0">
+                    <CheckBox Name="RefreshOnStartup" Content="Refresh mod list on startup" />
+                </StackPanel>
+
+                <!-- Language -->
+                <TextBlock Text="Language" FontSize="16" FontWeight="Bold" />
+                <ComboBox Name="LanguageCombo" Width="200" HorizontalAlignment="Left"
+                          Margin="16,0,0,0" />
+
+                <!-- Repositories -->
+                <TextBlock Text="Repositories" FontSize="16" FontWeight="Bold" />
+                <DockPanel Margin="16,0,0,0">
+                    <StackPanel DockPanel.Dock="Right" Spacing="4" Margin="8,0,0,0">
+                        <Button Content="Add..." Name="AddRepoButton" Click="OnAddRepo" />
+                        <Button Content="Remove" Name="RemoveRepoButton" Click="OnRemoveRepo" />
+                        <Button Content="Move Up" Name="MoveUpButton" Click="OnMoveRepoUp" />
+                        <Button Content="Move Down" Name="MoveDownButton" Click="OnMoveRepoDown" />
+                    </StackPanel>
+                    <ListBox Name="RepoList" MinHeight="100" />
+                </DockPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

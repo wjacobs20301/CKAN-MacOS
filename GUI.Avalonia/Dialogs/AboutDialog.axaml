@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CKAN.GUI.Avalonia.Dialogs.AboutDialog"
+        Title="About CKAN"
+        Width="460" Height="400"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        ShowInTaskbar="False">
+
+    <DockPanel Margin="16">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Margin="0,16,0,0">
+            <Button Content="OK" Width="80" Click="OnOkClick" Classes="accent" />
+        </StackPanel>
+
+        <StackPanel Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="CKAN" FontSize="28" FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Comprehensive Kerbal Archive Network"
+                       HorizontalAlignment="Center" FontSize="14" />
+            <TextBlock Name="VersionText" HorizontalAlignment="Center"
+                       Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+            <Separator Margin="0,8" />
+            <TextBlock Text="License: MIT" HorizontalAlignment="Center" />
+            <TextBlock Text="© the CKAN Authors"
+                       HorizontalAlignment="Center" FontSize="12" />
+            <TextBlock Text="https://github.com/KSP-CKAN/CKAN"
+                       HorizontalAlignment="Center"
+                       Foreground="CornflowerBlue"
+                       Cursor="Hand" TextDecorations="Underline" />
+            <Separator Margin="0,8" />
+            <TextBlock Text="macOS build by William Jacobs"
+                       HorizontalAlignment="Center" FontSize="12" />
+            <TextBlock Text="Native Avalonia app, universal binary (arm64 + x86_64)"
+                       HorizontalAlignment="Center" FontSize="11"
+                       Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+        </StackPanel>
+    </DockPanel>
+</Window>

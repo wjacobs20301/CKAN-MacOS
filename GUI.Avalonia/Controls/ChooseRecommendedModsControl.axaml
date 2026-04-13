@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CKAN.GUI.Avalonia.ViewModels"
+             x:Class="CKAN.GUI.Avalonia.Controls.ChooseRecommendedModsControl"
+             x:DataType="vm:ChooseRecommendedModsViewModel">
+
+    <DockPanel Margin="8">
+        <TextBlock DockPanel.Dock="Top" Text="{Binding Message}" TextWrapping="Wrap"
+                   Margin="0,0,0,8" />
+
+        <ScrollViewer>
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Recommended Mods" FontWeight="Bold" FontSize="16" />
+                    <ItemsControl ItemsSource="{Binding RecommendedMods}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsChecked}" Margin="0,2">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding Abstract}"
+                                                   Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                                    </StackPanel>
+                                </CheckBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Suggested Mods" FontWeight="Bold" FontSize="16" />
+                    <ItemsControl ItemsSource="{Binding SuggestedMods}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsChecked}" Margin="0,2">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding Abstract}"
+                                                   Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                                    </StackPanel>
+                                </CheckBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

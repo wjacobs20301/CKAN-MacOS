@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CKAN.GUI.Avalonia.Dialogs.UpdateAvailableDialog"
+        Title="Update Available"
+        Width="520" Height="440"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True"
+        ShowInTaskbar="False">
+
+    <DockPanel Margin="16">
+        <StackPanel DockPanel.Dock="Top" Spacing="6">
+            <TextBlock Text="A new version of CKAN for macOS is available"
+                       FontSize="16" FontWeight="Bold" />
+            <TextBlock Name="VersionLine"
+                       Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Spacing="8" Margin="0,12,0,0">
+            <Button Content="Skip this version" Click="OnSkipClick" />
+            <Button Content="Remind me later" Click="OnLaterClick" />
+            <Button Content="Download" Click="OnDownloadClick" Classes="accent" />
+        </StackPanel>
+
+        <TextBlock DockPanel.Dock="Top" Margin="0,12,0,4"
+                   Text="Release notes:" FontWeight="SemiBold" />
+
+        <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"
+                BorderThickness="1" CornerRadius="4" Padding="8">
+            <ScrollViewer>
+                <TextBlock Name="ReleaseNotes" TextWrapping="Wrap"
+                           FontFamily="Menlo,Consolas,monospace" FontSize="12" />
+            </ScrollViewer>
+        </Border>
+    </DockPanel>
+</Window>

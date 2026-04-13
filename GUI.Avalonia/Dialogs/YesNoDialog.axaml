@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CKAN.GUI.Avalonia.Dialogs.YesNoDialog"
+        Title="CKAN"
+        Width="400" Height="180"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        ShowInTaskbar="False"
+        SystemDecorations="BorderOnly">
+
+    <DockPanel Margin="16">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+            <Button Content="Yes" Width="80" Name="YesButton" Click="OnYesClick" Classes="accent" />
+            <Button Content="No" Width="80" Name="NoButton" Click="OnNoClick" />
+        </StackPanel>
+
+        <TextBlock Name="QuestionText" TextWrapping="Wrap"
+                   VerticalAlignment="Center" FontSize="14" />
+    </DockPanel>
+</Window>

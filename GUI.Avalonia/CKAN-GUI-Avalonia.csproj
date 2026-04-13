@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>CKAN-GUI-Avalonia</AssemblyName>
+    <OutputPath Condition=" '$(Configuration)' != '' ">..\_build\out\$(AssemblyName)\$(Configuration)\bin\</OutputPath>
+    <OutputPath Condition=" '$(Configuration)' == '' ">..\_build\out\$(AssemblyName)\VSCodeIDE\bin\</OutputPath>
+    <BaseIntermediateOutputPath Condition=" '$(Configuration)' != '' ">..\_build\out\$(AssemblyName)\$(Configuration)\obj\</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath Condition=" '$(Configuration)' == '' ">..\_build\out\$(AssemblyName)\VSCodeIDE\obj\</BaseIntermediateOutputPath>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>CKAN.GUI.Avalonia</RootNamespace>
+    <ProjectGuid>{B1C2D3E4-F5A6-7890-ABCD-EF1234567890}</ProjectGuid>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>true</Deterministic>
+    <Configurations>Debug;Release</Configurations>
+    <LangVersion>9</LangVersion>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>IDE1006;NU1701;CS1591</NoWarn>
+    <ApplicationIcon>..\assets\ckan.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.3" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="log4net" Version="2.0.15" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\CKAN-core.csproj">
+      <SetTargetFramework>TargetFramework=net8.0</SetTargetFramework>
+      <Project>{3B9AEA22-FA3B-4E43-9283-EABDD81CF271}</Project>
+      <Name>CKAN-core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="..\assets\ckan-128.png">
+      <Link>Assets\ckan-128.png</Link>
+    </AvaloniaResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\_build\meta\GlobalAssemblyVersionInfo.cs">
+      <Link>Properties\GlobalAssemblyVersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CKAN.GUI.Avalonia.Dialogs.InstallFiltersDialog"
+        Title="Install Filters"
+        Width="500" Height="400"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <DockPanel Margin="16">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+            <Button Content="OK" Width="80" Click="OnOkClick" Classes="accent" />
+            <Button Content="Cancel" Width="80" Click="OnCancelClick" />
+        </StackPanel>
+
+        <StackPanel Spacing="12">
+            <TextBlock Text="Global Install Filters" FontSize="16" FontWeight="Bold" />
+            <TextBlock Text="Files matching these patterns will not be installed." FontSize="12"
+                       Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Spacing="4" Margin="8,0,0,0">
+                    <Button Content="Add" Click="OnAddFilter" />
+                    <Button Content="Remove" Click="OnRemoveFilter" />
+                </StackPanel>
+                <ListBox Name="FilterList" MinHeight="150" />
+            </DockPanel>
+
+            <Separator />
+
+            <TextBlock Text="Instance Install Filters" FontSize="16" FontWeight="Bold" />
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Spacing="4" Margin="8,0,0,0">
+                    <Button Content="Add" Click="OnAddInstanceFilter" />
+                    <Button Content="Remove" Click="OnRemoveInstanceFilter" />
+                </StackPanel>
+                <ListBox Name="InstanceFilterList" MinHeight="100" />
+            </DockPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>

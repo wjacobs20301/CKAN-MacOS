@@ -1,0 +1,62 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CKAN.GUI.Avalonia.Dialogs.ManageGameInstancesDialog"
+        Title="Manage Game Instances"
+        Width="600" Height="450"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <DockPanel Margin="16">
+        <!-- Buttons -->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+            <Button Content="Close" Width="80" Click="OnCloseClick" />
+        </StackPanel>
+
+        <!-- Instance actions -->
+        <StackPanel DockPanel.Dock="Right" Spacing="4" Margin="8,0,0,0" Width="120">
+            <Button Content="Select" Click="OnSelectInstance" HorizontalAlignment="Stretch"
+                    FontWeight="Bold" />
+            <Separator Margin="0,4" />
+            <Button Content="Add Instance..." Click="OnAddInstance" HorizontalAlignment="Stretch" />
+            <Button Content="Clone..." Click="OnCloneInstance" HorizontalAlignment="Stretch" />
+            <Button Content="Rename..." Click="OnRenameInstance" HorizontalAlignment="Stretch" />
+            <Button Content="Set as Default" Click="OnSetDefault" HorizontalAlignment="Stretch" />
+            <Separator Margin="0,8" />
+            <Button Content="Remove" Click="OnRemoveInstance" HorizontalAlignment="Stretch" />
+            <Separator Margin="0,8" />
+            <Button Content="Open Dir" Click="OnOpenDirectory" HorizontalAlignment="Stretch" />
+        </StackPanel>
+
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Top" Text="Game Instances" FontSize="16"
+                       FontWeight="Bold" Margin="0,0,0,4" />
+
+            <!-- Current instance info -->
+            <Border DockPanel.Dock="Top" Padding="8,6" Margin="0,0,0,8"
+                    Background="{DynamicResource SystemControlBackgroundListLowBrush}"
+                    CornerRadius="4">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <TextBlock Text="Current Instance:" FontWeight="SemiBold" />
+                    <TextBlock Name="CurrentInstanceLabel" Text="(none)" />
+                </StackPanel>
+            </Border>
+
+            <DataGrid x:CompileBindings="False"
+                      Name="InstanceGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Active" Binding="{Binding Active}" Width="50" />
+                    <DataGridTextColumn Header="Default" Binding="{Binding Default}" Width="60" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="130" />
+                    <DataGridTextColumn Header="Game" Binding="{Binding Game}" Width="70" />
+                    <DataGridTextColumn Header="Version" Binding="{Binding Version}" Width="80" />
+                    <DataGridTextColumn Header="Path" Binding="{Binding Path}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </DockPanel>
+</Window>

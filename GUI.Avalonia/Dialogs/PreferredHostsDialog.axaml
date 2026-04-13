@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CKAN.GUI.Avalonia.Dialogs.PreferredHostsDialog"
+        Title="Preferred Hosts"
+        Width="400" Height="350"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <DockPanel Margin="16">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+            <Button Content="OK" Width="80" Click="OnOkClick" Classes="accent" />
+            <Button Content="Cancel" Width="80" Click="OnCancelClick" />
+        </StackPanel>
+
+        <StackPanel Spacing="8">
+            <TextBlock Text="Drag to reorder download host preference:" TextWrapping="Wrap" />
+
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Spacing="4" Margin="8,0,0,0">
+                    <Button Content="Move Up" Click="OnMoveUp" />
+                    <Button Content="Move Down" Click="OnMoveDown" />
+                </StackPanel>
+                <ListBox Name="HostList" MinHeight="200" />
+            </DockPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>

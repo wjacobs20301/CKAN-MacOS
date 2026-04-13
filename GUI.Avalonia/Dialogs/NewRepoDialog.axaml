@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CKAN.GUI.Avalonia.Dialogs.NewRepoDialog"
+        Title="Add Repository"
+        Width="400" Height="200"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        ShowInTaskbar="False">
+
+    <DockPanel Margin="16">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+            <Button Content="OK" Width="80" Click="OnOkClick" Classes="accent" />
+            <Button Content="Cancel" Width="80" Click="OnCancelClick" />
+        </StackPanel>
+
+        <StackPanel Spacing="8">
+            <TextBlock Text="Repository Name:" />
+            <TextBox Name="RepoNameBox" Watermark="e.g. My Custom Repo" />
+            <TextBlock Text="Repository URL:" />
+            <TextBox Name="RepoUrlBox" Watermark="https://..." />
+        </StackPanel>
+    </DockPanel>
+</Window>

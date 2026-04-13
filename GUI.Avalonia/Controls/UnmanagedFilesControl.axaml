@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CKAN.GUI.Avalonia.ViewModels"
+             x:Class="CKAN.GUI.Avalonia.Controls.UnmanagedFilesControl"
+             x:DataType="vm:UnmanagedFilesViewModel">
+
+    <DockPanel Margin="8">
+        <TextBlock DockPanel.Dock="Top" Text="Unmanaged Files" FontSize="18"
+                   FontWeight="Bold" Margin="0,0,0,8" />
+
+        <ProgressBar DockPanel.Dock="Top" IsIndeterminate="True"
+                     IsVisible="{Binding IsLoading}" Height="4" Margin="0,0,0,8" />
+
+        <DataGrid x:CompileBindings="False"
+                  ItemsSource="{Binding Files}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="File Path" Binding="{Binding FilePath}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

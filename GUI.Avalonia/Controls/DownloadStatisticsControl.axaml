@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CKAN.GUI.Avalonia.ViewModels"
+             x:Class="CKAN.GUI.Avalonia.Controls.DownloadStatisticsControl"
+             x:DataType="vm:DownloadStatisticsViewModel">
+
+    <DockPanel Margin="8">
+        <TextBlock DockPanel.Dock="Top" Text="Download Statistics" FontSize="18"
+                   FontWeight="Bold" Margin="0,0,0,8" />
+        <TextBlock DockPanel.Dock="Top"
+                   Text="{Binding TotalDownloads, StringFormat='Total Downloads: {0:N0}'}"
+                   Margin="0,0,0,8" />
+
+        <DataGrid x:CompileBindings="False"
+                  ItemsSource="{Binding TopMods}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserSortColumns="True"
+                  HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mod" Binding="{Binding ModName}" Width="*" />
+                <DataGridTextColumn Header="Downloads" Binding="{Binding DownloadCount}" Width="120" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

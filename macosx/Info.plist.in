@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>CFBundleDevelopmentRegion</key>
+        <string>en</string>
+        <key>CFBundleDisplayName</key>
+        <string>CKAN</string>
+        <key>CFBundleExecutable</key>
+        <string>CKAN</string>
+        <key>CFBundleIconFile</key>
+        <string>CKAN.icns</string>
+        <key>CFBundleIdentifier</key>
+        <string>org.ksp-ckan.ckan</string>
+        <key>CFBundleInfoDictionaryVersion</key>
+        <string>1.0</string>
+        <key>CFBundleName</key>
+        <string>CKAN</string>
+        <key>CFBundlePackageType</key>
+        <string>APPL</string>
+        <key>CFBundleShortVersionString</key>
+        <string>@VERSION@</string>
+        <key>CFBundleSignature</key>
+        <string>xmmd</string>
+        <key>CFBundleVersion</key>
+        <string>@VERSION@</string>
+        <key>NSAppleScriptEnabled</key>
+        <false/>
+        <key>NSHighResolutionCapable</key>
+        <true/>
+        <key>LSMinimumSystemVersion</key>
+        <string>11.0</string>
+        <key>LSApplicationCategoryType</key>
+        <string>public.app-category.utilities</string>
+        <key>ITSAppUsesNonExemptEncryption</key>
+        <false/>
+        <key>NSHumanReadableCopyright</key>
+        <string>CKAN is © the Comprehensive Kerbal Archive Network (CKAN) Authors — https://github.com/KSP-CKAN/CKAN/graphs/contributors. Licensed under the MIT License. macOS application packaging by William Jacobs.</string>
+    </dict>
+</plist>

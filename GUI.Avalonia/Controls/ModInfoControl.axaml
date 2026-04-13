@@ -1,0 +1,160 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CKAN.GUI.Avalonia.ViewModels"
+             x:Class="CKAN.GUI.Avalonia.Controls.ModInfoControl"
+             x:DataType="vm:ModInfoViewModel">
+
+    <TabControl SelectedIndex="{Binding SelectedInfoTab}">
+        <!-- Metadata Tab -->
+        <TabItem Header="Metadata">
+            <ScrollViewer>
+                <StackPanel Spacing="8" Margin="8">
+                    <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold"
+                               TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Identifier}" FontSize="12"
+                               Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+
+                    <Separator />
+
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                          Margin="0,4">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Authors: " FontWeight="SemiBold" Margin="0,2" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Authors}" TextWrapping="Wrap" Margin="0,2" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Version: " FontWeight="SemiBold" Margin="0,2" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Version}" Margin="0,2" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="License: " FontWeight="SemiBold" Margin="0,2" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding License}" Margin="0,2" />
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Game Compat.: " FontWeight="SemiBold" Margin="0,2" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding GameCompatibility}" Margin="0,2" />
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Download Size: " FontWeight="SemiBold" Margin="0,2" />
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding DownloadSize}" Margin="0,2" />
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Install Size: " FontWeight="SemiBold" Margin="0,2" />
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding InstallSize}" Margin="0,2" />
+
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Downloads: " FontWeight="SemiBold" Margin="0,2" />
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding DownloadCount}" Margin="0,2" />
+
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Release Date: " FontWeight="SemiBold" Margin="0,2" />
+                        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding ReleaseDate}" Margin="0,2" />
+                    </Grid>
+
+                    <Separator />
+
+                    <TextBlock Text="Abstract" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Abstract}" TextWrapping="Wrap" />
+
+                    <TextBlock Text="Description" FontWeight="SemiBold" Margin="0,8,0,0" />
+                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+
+                    <Separator />
+
+                    <!-- Links -->
+                    <StackPanel Spacing="4" IsVisible="{Binding Homepage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                        <TextBlock Text="Homepage" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding Homepage}" Foreground="CornflowerBlue"
+                                   Cursor="Hand" TextDecorations="Underline" />
+                    </StackPanel>
+                    <StackPanel Spacing="4" IsVisible="{Binding Repository, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                        <TextBlock Text="Repository" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding Repository}" Foreground="CornflowerBlue"
+                                   Cursor="Hand" TextDecorations="Underline" />
+                    </StackPanel>
+                    <StackPanel Spacing="4" IsVisible="{Binding SpaceDock, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                        <TextBlock Text="SpaceDock" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding SpaceDock}" Foreground="CornflowerBlue"
+                                   Cursor="Hand" TextDecorations="Underline" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <!-- Contents Tab -->
+        <TabItem Header="Contents">
+            <DockPanel>
+                <Button DockPanel.Dock="Top" Content="Load Contents" Margin="8"
+                        HorizontalAlignment="Left" />
+                <ListBox ItemsSource="{Binding Contents}" Margin="8">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontFamily="Consolas,Menlo,monospace" FontSize="12" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </TabItem>
+
+        <!-- Relationships Tab -->
+        <TabItem Header="Relationships">
+            <ScrollViewer>
+                <StackPanel Spacing="8" Margin="8">
+                    <Expander Header="Dependencies" IsExpanded="True">
+                        <ListBox ItemsSource="{Binding Dependencies}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Expander>
+                    <Expander Header="Recommends" IsExpanded="True">
+                        <ListBox ItemsSource="{Binding Recommends}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Expander>
+                    <Expander Header="Suggests">
+                        <ListBox ItemsSource="{Binding Suggests}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Expander>
+                    <Expander Header="Conflicts">
+                        <ListBox ItemsSource="{Binding Conflicts}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Expander>
+                    <Expander Header="Supports">
+                        <ListBox ItemsSource="{Binding Supports}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <!-- Versions Tab -->
+        <TabItem Header="Versions">
+            <DataGrid x:CompileBindings="False"
+                      ItemsSource="{Binding Versions}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserSortColumns="True"
+                      HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Version" Binding="{Binding Version}" Width="*" />
+                    <DataGridCheckBoxColumn Header="Compatible" Binding="{Binding IsCompatible}" Width="80" />
+                    <DataGridCheckBoxColumn Header="Installed" Binding="{Binding IsInstalled}" Width="80" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+    </TabControl>
+</UserControl>

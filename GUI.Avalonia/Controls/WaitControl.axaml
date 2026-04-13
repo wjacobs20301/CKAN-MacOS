@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CKAN.GUI.Avalonia.ViewModels"
+             x:Class="CKAN.GUI.Avalonia.Controls.WaitControl"
+             x:DataType="vm:WaitViewModel">
+
+    <DockPanel Margin="16">
+        <TextBlock DockPanel.Dock="Top" Text="Please Wait" FontSize="18"
+                   FontWeight="Bold" Margin="0,0,0,16" />
+
+        <!-- Progress -->
+        <StackPanel DockPanel.Dock="Top" Spacing="8">
+            <TextBlock Text="{Binding ProgressMessage}" TextWrapping="Wrap" />
+            <ProgressBar Minimum="0" Maximum="100"
+                         Value="{Binding ProgressPercent}"
+                         IsIndeterminate="{Binding IsIndeterminate}"
+                         Height="24" />
+        </StackPanel>
+
+        <!-- Log Messages -->
+        <TextBlock DockPanel.Dock="Top" Text="Log" FontWeight="SemiBold"
+                   Margin="0,16,0,4" />
+        <ListBox ItemsSource="{Binding LogMessages}"
+                 FontFamily="Consolas,Menlo,monospace"
+                 FontSize="12">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>

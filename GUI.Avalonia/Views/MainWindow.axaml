@@ -1,0 +1,138 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CKAN.GUI.Avalonia.ViewModels"
+        xmlns:views="using:CKAN.GUI.Avalonia.Views"
+        xmlns:controls="using:CKAN.GUI.Avalonia.Controls"
+        x:Class="CKAN.GUI.Avalonia.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="{Binding Title}"
+        Icon="avares://CKAN-GUI-Avalonia/Assets/ckan-128.png"
+        Width="1200" Height="800"
+        MinWidth="800" MinHeight="600"
+        WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <DockPanel>
+        <!-- Menu Bar -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Manage Game Instances..."
+                          Command="{Binding ManageInstancesCommand}" />
+                <Separator />
+                <MenuItem Header="_Import Downloads..."
+                          Command="{Binding ImportCommand}" />
+                <MenuItem Header="_Export Installed Mods..."
+                          Command="{Binding ExportCommand}" />
+                <Separator />
+                <MenuItem Header="E_xit"
+                          Command="{Binding ExitCommand}" />
+            </MenuItem>
+            <MenuItem Header="_Settings">
+                <MenuItem Header="_CKAN Settings..."
+                          Command="{Binding SettingsCommand}" />
+                <MenuItem Header="_Plugins..."
+                          Command="{Binding PluginsCommand}" />
+                <Separator />
+                <MenuItem Header="Preferred _Hosts..."
+                          Command="{Binding PreferredHostsCommand}" />
+                <MenuItem Header="Install _Filters..."
+                          Command="{Binding InstallFiltersCommand}" />
+                <Separator />
+                <MenuItem Header="_Game Command Line..."
+                          Command="{Binding GameCommandLineCommand}" />
+                <MenuItem Header="Compatible Game _Versions..."
+                          Command="{Binding CompatibleVersionsCommand}" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_User Guide"
+                          Command="{Binding UserGuideCommand}" />
+                <MenuItem Header="_Discord"
+                          Command="{Binding DiscordCommand}" />
+                <Separator />
+                <MenuItem Header="_Report an Issue"
+                          Command="{Binding ReportIssueCommand}" />
+                <MenuItem Header="Check for _Updates..."
+                          Command="{Binding CheckForUpdatesCommand}" />
+                <MenuItem Header="_About CKAN"
+                          Command="{Binding AboutCommand}" />
+            </MenuItem>
+        </Menu>
+
+        <!-- Toolbar -->
+        <Border DockPanel.Dock="Top" Padding="4" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}">
+            <StackPanel Orientation="Horizontal" Spacing="4">
+                <Image Source="avares://CKAN-GUI-Avalonia/Assets/ckan-128.png"
+                       Width="24" Height="24" Margin="2,0,6,0"
+                       VerticalAlignment="Center" />
+                <Button Content="&#x2190;" ToolTip.Tip="Back"
+                        Command="{Binding NavigateBackCommand}" />
+                <Button Content="&#x2192;" ToolTip.Tip="Forward"
+                        Command="{Binding NavigateForwardCommand}" />
+                <Separator />
+                <Button Content="Refresh" ToolTip.Tip="Refresh mod list"
+                        Command="{Binding RefreshCommand}" />
+                <Button Content="Update All" ToolTip.Tip="Mark all available updates"
+                        Command="{Binding UpdateAllCommand}" />
+                <Button Content="Apply Changes" ToolTip.Tip="Apply pending changes"
+                        Command="{Binding ApplyChangesCommand}"
+                        IsEnabled="{Binding HasChanges}" />
+                <Separator />
+                <ComboBox ItemsSource="{Binding FilterOptions}"
+                          SelectedItem="{Binding SelectedFilter}"
+                          MinWidth="200" />
+                <Separator />
+                <Button Content="Launch Game" ToolTip.Tip="Launch KSP"
+                        Command="{Binding LaunchGameCommand}" />
+            </StackPanel>
+        </Border>
+
+        <!-- Status Bar -->
+        <Border DockPanel.Dock="Bottom" Padding="4,2"
+                Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Right"
+                           Text="{Binding CurrentInstanceName}"
+                           Margin="8,0,0,0" />
+                <ProgressBar DockPanel.Dock="Right"
+                             Width="200"
+                             Minimum="0" Maximum="100"
+                             Value="{Binding ProgressPercent}"
+                             IsVisible="{Binding IsProgressVisible}"
+                             Margin="8,0,0,0" />
+                <TextBlock Text="{Binding StatusMessage}"
+                           TextTrimming="CharacterEllipsis" />
+            </DockPanel>
+        </Border>
+
+        <!-- Main Content Area -->
+        <TabControl SelectedIndex="{Binding SelectedTabIndex}">
+            <TabItem Header="Manage Mods" IsVisible="{Binding IsManageModsVisible}">
+                <controls:ManageModsControl DataContext="{Binding ManageModsViewModel}" />
+            </TabItem>
+            <TabItem Header="Changeset" IsVisible="{Binding IsChangesetVisible}">
+                <controls:ChangesetControl DataContext="{Binding ChangesetViewModel}" />
+            </TabItem>
+            <TabItem Header="Progress" IsVisible="{Binding IsWaitVisible}">
+                <controls:WaitControl DataContext="{Binding WaitViewModel}" />
+            </TabItem>
+            <TabItem Header="Choose Recommended Mods" IsVisible="{Binding IsChooseRecommendedVisible}">
+                <controls:ChooseRecommendedModsControl DataContext="{Binding ChooseRecommendedViewModel}" />
+            </TabItem>
+            <TabItem Header="Play Time" IsVisible="{Binding IsPlayTimeVisible}">
+                <controls:PlayTimeControl DataContext="{Binding PlayTimeViewModel}" />
+            </TabItem>
+            <TabItem Header="Unmanaged Files" IsVisible="{Binding IsUnmanagedFilesVisible}">
+                <controls:UnmanagedFilesControl DataContext="{Binding UnmanagedFilesViewModel}" />
+            </TabItem>
+            <TabItem Header="Installation History" IsVisible="{Binding IsInstallHistoryVisible}">
+                <controls:InstallationHistoryControl DataContext="{Binding InstallHistoryViewModel}" />
+            </TabItem>
+            <TabItem Header="Download Statistics" IsVisible="{Binding IsDownloadStatsVisible}">
+                <controls:DownloadStatisticsControl DataContext="{Binding DownloadStatsViewModel}" />
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

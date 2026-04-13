@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CKAN.GUI.Avalonia.ViewModels"
+             x:Class="CKAN.GUI.Avalonia.Controls.InstallationHistoryControl"
+             x:DataType="vm:InstallationHistoryViewModel">
+
+    <DockPanel Margin="8">
+        <TextBlock DockPanel.Dock="Top" Text="Installation History" FontSize="18"
+                   FontWeight="Bold" Margin="0,0,0,8" />
+
+        <DataGrid x:CompileBindings="False"
+                  ItemsSource="{Binding History}"
+                  SelectedItem="{Binding SelectedEntry}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date/Time" Binding="{Binding Timestamp}" Width="180" />
+                <DataGridTextColumn Header="Change" Binding="{Binding Description}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>
