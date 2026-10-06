@@ -170,6 +170,9 @@ namespace CKAN.IO
             }
 
             EnforceCacheSizeLimit(registry_manager.registry, cache, config);
+            // The game uses the extracted GameData copy. Drop the zip so the
+            // download cache does not keep a second copy of every mod.
+            DiscardCachedDownloads(modsToInstall);
             User.RaiseProgress(Properties.Resources.ModuleInstallerDone, 100);
         }
 
@@ -1272,6 +1275,7 @@ namespace CKAN.IO
                 tx.Complete();
                 EnforceCacheSizeLimit(registry_manager.registry, cache, config);
             }
+            DiscardCachedDownloads(add);
         }
 
         /// <summary>
@@ -1719,6 +1723,18 @@ namespace CKAN.IO
             if (config.CacheSizeLimit.HasValue)
             {
                 Cache.EnforceSizeLimit(config.CacheSizeLimit.Value, registry);
+            }
+        }
+
+        /// <summary>
+        /// Delete cached download zips for mods that just installed successfully.
+        /// </summary>
+        private void DiscardCachedDownloads(IEnumerable<CkanModule> installed)
+        {
+            var downloaded = installed.Where(m => m.download != null).ToArray();
+            if (downloaded.Length > 0)
+            {
+                cache.Purge(downloaded);
             }
         }
 

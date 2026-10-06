@@ -445,6 +445,10 @@ namespace Tests.Core.IO
 
                 // Check that the module is installed.
                 FileAssert.Exists(mod_file_path);
+
+                // The download zip is only needed until extraction finishes.
+                Assert.IsFalse(manager.Cache?.IsCached(TestData.DogeCoinFlag_101_module()));
+                FileAssert.DoesNotExist(cache_path);
             }
         }
 
