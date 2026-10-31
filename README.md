@@ -15,7 +15,7 @@ Find, install, update and remove KSP mods in a few clicks on Apple Silicon and I
 ![Apple Silicon + Intel](https://img.shields.io/badge/arch-arm64%20%7C%20x86__64-blue)
 ![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet)
 ![Avalonia](https://img.shields.io/badge/UI-Avalonia%2011-8B44AC)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 [**Download**](#download) · [**Using CKAN**](#using-ckan) · [**How it works**](#how-it-works) · [**FAQ**](#faq) · [**Build from source**](#building-from-source)
 
@@ -267,7 +267,7 @@ For the CKAN engine, the [metadata spec](Spec.md) or mod metadata, contribute [u
 
 This project is a **macOS-focused fork** of [**KSP-CKAN/CKAN**][upstream], created and maintained by the [CKAN contributors][contributors]. The mod manager itself is their work. If you find this app useful, please consider supporting and contributing to the upstream project.
 
-Released under the **MIT License** (see [LICENSE.md](LICENSE.md)), copyright the Comprehensive Kerbal Archive Network (CKAN) Authors.
+Released under the **MIT License** (see [LICENSE](LICENSE)), copyright the Comprehensive Kerbal Archive Network (CKAN) Authors, with the macOS additions copyright William Jacobs.
 
 *Kerbal Space Program is a trademark of Take-Two Interactive. This project is not affiliated with or endorsed by Take-Two, Private Division or Squad.*
 
